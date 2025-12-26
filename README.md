@@ -1,20 +1,16 @@
 # Personal Portfolio ⚡️ 
 > A clean, beautiful, responsive portfolio template for Software Developers!
 
-> https://kubanjaelijaheldred.github.io
-
 ![GitHub stars](https://img.shields.io/github/stars/kubanjaelijaheldred/kubanjaelijaheldred.github.io) 
 ![GitHub forks](https://img.shields.io/github/forks/kubanjaelijaheldred/kubanjaelijaheldred.github.io)
 [![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/kubanjaelijaheldred/kubanjaelijaheldred.github.io/commits/master)
-[![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://kubanjaelijaheldred.github.io/)
 [![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/kubanjaelijaheldred/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ### Website Preview
 <p align="center"> 
   <kbd>
-    <a href="https://kubanjaelijaheldred.github.io" target="_blank"><img src="examples/preview.gif">
-  </a>
+    <img src="examples/preview.gif">
   </kbd>
 </p>
 
@@ -42,8 +38,6 @@
 ✔️ Education\
 ✔️ Contact Info\
 ✔️ Resume
-
-To view a live example, **[click here](https://kubanjaelijaheldred.github.io/)**
 
 ## Tools Used 🛠️
 * [<b>GitHub Pages</b>](https://create-react-app.dev/docs/deployment/#github-pages) - To host my static website (HTML, CSS, JS).
