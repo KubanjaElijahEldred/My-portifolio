@@ -2,6 +2,8 @@
 > A clean, beautiful, responsive portfolio template for Software Developers!
 
 ![GitHub stars](https://img.shields.io/github/stars/kubanjaelijaheldred/kubanjaelijaheldred.github.io) 
+> https://kubanjaelijaheldred.github.io
+> ![GitHub stars](https://img.shields.io/github/stars/kubanjaelijaheldred/kubanjaelijaheldred.github.io) 
 ![GitHub forks](https://img.shields.io/github/forks/kubanjaelijaheldred/kubanjaelijaheldred.github.io)
 [![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/kubanjaelijaheldred/kubanjaelijaheldred.github.io/commits/master)
 [![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/kubanjaelijaheldred/)
@@ -13,6 +15,7 @@
     <img src="examples/preview.gif">
   </kbd>
 </p>
+
 
 :star: Star me on GitHub — it helps!
 
