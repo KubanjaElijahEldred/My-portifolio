@@ -1,6 +1,7 @@
 # Personal Portfolio ⚡️ 
 > A clean, beautiful, responsive portfolio template for Software Developers!
 
+c
 ![GitHub stars](https://img.shields.io/github/stars/kubanjaelijaheldred/kubanjaelijaheldred.github.io) 
 > https://kubanjaelijaheldred.github.io
 > ![GitHub stars](https://img.shields.io/github/stars/kubanjaelijaheldred/kubanjaelijaheldred.github.io) 
