@@ -10,12 +10,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ### Website Preview
-<p align="center"> 
-  <kbd>
-    <img src="examples/preview.gif">
-  </kbd>
-</p>
-
+https://kubanjaelijaheldred1.netlify.app/
 
 :star: Star me on GitHub — it helps!
 
