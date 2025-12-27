@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experience | Kubanja Elijah Eldred</title>
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0f1d14;
+      --accent-yellow: #FFB100;
+      --teal-accent: #00bfa5;
+      --card-bg: #1a2e22;
+      --text-main: #ffffff;
+      --overlay: rgba(15, 29, 20, 0.85);
+      --nav-bg: rgba(15, 29, 20, 0.98);
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #f5f7f6;
+      --accent-yellow: #e6a000;
+      --teal-accent: #00897b;
+      --card-bg: #ffffff;
+      --text-main: #1a2e22;
+      --overlay: rgba(245, 247, 246, 0.9);
+      --nav-bg: rgba(255, 255, 255, 0.98);
+    }
+
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: var(--bg-dark); 
+      color: var(--text-main); 
+      margin: 0; 
+      transition: background 0.3s ease, color 0.3s ease;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(var(--overlay), var(--overlay)), url('back.jpg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -1;
+    }
+
+    /* Floating Profile Badge */
+    .global-profile-badge {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-yellow);
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 9998;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+    .global-profile-badge:hover { transform: scale(1.15); }
+
+    /* Navigation */
+    nav { background: var(--nav-bg); height: 70px; line-height: 70px; position: fixed; z-index: 1000; box-shadow: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    nav ul li a { color: var(--text-main); font-weight: 600; }
+    .brand-logo { font-weight: 900; }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    #experience-hero { min-height: 60vh; display: flex; align-items: center; padding-top: 70px; }
+
+    /* Experience Cards */
+    .experience-card { 
+      background: var(--card-bg); 
+      border-radius: 15px; 
+      overflow: hidden; 
+      transition: 0.4s; 
+      height: 100%; 
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .experience-card:hover { transform: translateY(-10px); border-color: var(--accent-yellow); }
+    .experience-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--accent-yellow);
+    }
+    .experience-content { padding: 30px; }
+    .experience-header { margin-bottom: 20px; }
+    .company-logo { 
+      width: 60px; 
+      height: 60px; 
+      border-radius: 12px; 
+      background: var(--accent-yellow); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-weight: 900; 
+      color: var(--bg-dark);
+      margin-bottom: 15px;
+    }
+
+    /* Project Showcase */
+    .project-showcase {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 15px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .project-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal-accent), var(--accent-yellow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    .project-icon i { color: white; font-size: 1.5rem; }
+
+    /* Tech Tags */
+    .tech-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin: 3px;
+      background: rgba(255,177,0,0.2);
+      color: var(--accent-yellow);
+      border: 1px solid var(--accent-yellow);
+    }
+
+    /* Timeline */
+    .timeline-line {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent-yellow);
+    }
+
+    #theme-toggle { cursor: pointer; background: none; border: none; color: var(--text-main); font-size: 1.2rem; margin-top: 18px; margin-left: 15px; }
+
+    @media only screen and (max-width: 992px) { 
+        #experience-hero { text-align: center; } 
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+        display: none;
+    }
+    
+    @media only screen and (max-width: 992px) {
+        .mobile-nav {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--nav-bg);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-content {
+            padding: 100px 30px;
+        }
+        
+        .mobile-nav-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-nav-content li {
+            margin: 20px 0;
+        }
+        
+        .mobile-nav-content a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="index.html"><div class="global-profile-badge"></div></a>
+
+  <nav>
+    <div class="container">
+      <a href="index.html" class="brand-logo teal-text">KUBANJA</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="experience.html" style="color: var(--accent-yellow);">Experience</a></li>
+        <li><a href="index.html#resume">Resume</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><button id="theme-toggle" class="btn-floating btn-small grey darken-3"><i id="theme-icon" class="fa fa-moon-o"></i></button></li>
+      </ul>
+      <button class="hamburger hide-on-large-only" id="mobile-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="mobile-nav-close" id="mobile-nav-close">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="mobile-nav-content">
+      <ul>
+        <li><a href="index.html#about" onclick="closeMobileNav()">About</a></li>
+        <li><a href="index.html#projects" onclick="closeMobileNav()">Work</a></li>
+        <li><a href="experience.html" onclick="closeMobileNav()" style="color: var(--accent-yellow);">Experience</a></li>
+        <li><a href="index.html#resume" onclick="closeMobileNav()">Resume</a></li>
+        <li><a href="index.html#contact" onclick="closeMobileNav()">Contact</a></li>
+        <li><button id="theme-toggle-mobile" class="btn-floating btn-small grey darken-3"><i id="theme-icon-mobile" class="fa fa-moon-o"></i></button></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="experience-hero">
+    <div class="container">
+      <div class="row valign-wrapper" style="width: 100%; display: flex; flex-wrap: wrap;">
+        <div class="col s12 m8" data-aos="fade-right">
+          <h5 style="color: var(--teal-accent); font-weight: 700;">PROFESSIONAL JOURNEY</h5>
+          <h1 style="font-weight: 900; margin: 10px 0;">Work Experience</h1>
+          <p class="flow-text">Two years of hands-on development at BOSCOM, delivering innovative AI-powered solutions and comprehensive management systems.</p>
+        </div>
+        <div class="col s12 m4 center" data-aos="zoom-in">
+          <div style="width: 200px; height: 200px; margin: 0 auto; border-radius: 20px; background: linear-gradient(135deg, var(--accent-yellow), var(--teal-accent)); display: flex; align-items: center; justify-content: center;">
+            <i class="fa fa-briefcase" style="font-size: 4rem; color: white;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience-details">
+    <div class="container">
+      <div class="row">
+        <div class="col s12" data-aos="fade-up">
+          <div class="experience-card">
+            <div class="experience-content">
+              <div class="experience-header">
+                <div class="company-logo">BOSCOM</div>
+                <h3 style="font-weight: 900; color: var(--accent-yellow); margin: 0;">Software Developer</h3>
+                <h5 style="font-weight: 600; margin: 5px 0; color: var(--teal-accent);">BOSCOM Organization</h5>
+                <p style="margin: 10px 0; font-size: 1.1rem;">
+                  <i class="fa fa-calendar"></i> 2 Years | 
+                  <i class="fa fa-map-marker" style="margin-left: 15px;"></i> Full-time
+                </p>
+              </div>
+
+              <p class="flow-text" style="margin-bottom: 30px;">
+                During my two-year tenure at BOSCOM, I led the development of multiple cutting-edge projects that combined AI technology with practical business solutions. My role involved full-stack development, system architecture design, and integration of advanced AI capabilities into production-ready applications.
+              </p>
+
+              <h4 style="font-weight: 900; margin-bottom: 20px; color: var(--accent-yellow);">Key Projects Delivered</h4>
+              
+              <div class="project-showcase">
+                <div class="project-item">
+                  <div class="project-icon">
+                    <i class="fa fa-graduation-cap"></i>
+                  </div>
+                  <div class="project-details">
+                    <h5 style="font-weight: 700; margin: 0; color: var(--accent-yellow);">AI Student Companion</h5>
+                    <p style="margin: 5px 0;">An intelligent NLP-powered chatbot designed to assist students with academic scheduling, query resolution, and personalized learning recommendations.</p>
+                    <div style="margin-top: 10px;">
+                      <span class="tech-tag">Python</span>
+                      <span class="tech-tag">NLP</span>
+                      <span class="tech-tag">TensorFlow</span>
+                      <span class="tech-tag">Django</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-icon">
+                    <i class="fa fa-user-check"></i>
+                  </div>
+                  <div class="project-details">
+                    <h5 style="font-weight: 700; margin: 0; color: var(--accent-yellow);">Smart Attendance System</h5>
+                    <p style="margin: 5px 0;">Facial recognition-based attendance tracking system using OpenCV and deep learning, achieving 95% accuracy in real-time identification.</p>
+                    <div style="margin-top: 10px;">
+                      <span class="tech-tag">OpenCV</span>
+                      <span class="tech-tag">Deep Learning</span>
+                      <span class="tech-tag">Python</span>
+                      <span class="tech-tag">Flask</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-icon">
+                    <i class="fa fa-users"></i>
+                  </div>
+                  <div class="project-details">
+                    <h5 style="font-weight: 700; margin: 0; color: var(--accent-yellow);">Student Management System</h5>
+                    <p style="margin: 5px 0;">Comprehensive full-stack platform for managing student records, course enrollment, and academic performance analytics.</p>
+                    <div style="margin-top: 10px;">
+                      <span class="tech-tag">Django</span>
+                      <span class="tech-tag">PostgreSQL</span>
+                      <span class="tech-tag">React</span>
+                      <span class="tech-tag">REST API</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 30px; padding: 20px; background: rgba(0,191,165,0.1); border-radius: 10px; border-left: 4px solid var(--teal-accent);">
+                <h5 style="font-weight: 700; color: var(--teal-accent); margin-bottom: 15px;">Key Achievements</h5>
+                <ul style="list-style: none; padding: 0;">
+                  <li style="margin-bottom: 10px;"><i class="fa fa-check-circle" style="color: var(--accent-yellow); margin-right: 10px;"></i> Successfully deployed 3 major production systems</li>
+                  <li style="margin-bottom: 10px;"><i class="fa fa-check-circle" style="color: var(--accent-yellow); margin-right: 10px;"></i> Improved operational efficiency by 40% through automation</li>
+                  <li style="margin-bottom: 10px;"><i class="fa fa-check-circle" style="color: var(--accent-yellow); margin-right: 10px;"></i> Led cross-functional teams of 5+ developers</li>
+                  <li style="margin-bottom: 10px;"><i class="fa fa-check-circle" style="color: var(--accent-yellow); margin-right: 10px;"></i> Implemented AI solutions that reduced manual workload by 60%</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="center" style="padding: 60px; border-top: 1px solid rgba(128,128,128,0.2);">
+    <p>© 2025 Kubanja Elijah Eldred | Built with Passion & Code</p>
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    
+    // Mobile Navigation
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    
+    function closeMobileNav() {
+      mobileNav.classList.remove('active');
+    }
+    
+    if(mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileNav.classList.add('active');
+      });
+    }
+    
+    if(mobileNavClose) {
+      mobileNavClose.addEventListener('click', closeMobileNav);
+    }
+    
+    // Mobile theme toggle
+    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+    const themeIconMobile = document.getElementById('theme-icon-mobile');
+    
+    if(themeBtnMobile) {
+      themeBtnMobile.addEventListener('click', () => {
+        let current = document.documentElement.getAttribute('data-theme');
+        if(current === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          if(themeIcon) themeIcon.className = 'fa fa-sun-o';
+          if(themeIconMobile) themeIconMobile.className = 'fa fa-sun-o';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          if(themeIcon) themeIcon.className = 'fa fa-moon-o';
+          if(themeIconMobile) themeIconMobile.className = 'fa fa-moon-o';
+        }
+      });
+      
+      // Sync mobile theme icon
+           if(savedTheme === 'light') {
+        themeIconMobile.className = 'fa fa-sun-o';
+      }
+    }
+    
+    // Theme Switch Logic
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if(savedTheme === 'light') themeIcon.className = 'fa fa-sun-o';
+
+    themeBtn.addEventListener('click', () => {
+      let current = document.documentElement.getAttribute('data-theme');
+      if(current === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeIcon.className = 'fa fa-sun-o';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIcon.className = 'fa fa-moon-o';
+      }
+    });
+  </script>
+</body>
+</html>

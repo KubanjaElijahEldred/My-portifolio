@@ -38,9 +38,9 @@
       color: var(--text-main); 
       margin: 0; 
       transition: background 0.3s ease, color 0.3s ease;
+      scroll-behavior: smooth;
     }
 
-    /* Global Background Image */
     body::before {
       content: "";
       position: fixed;
@@ -52,71 +52,302 @@
       z-index: -1;
     }
 
-    /* Floating Global Profile Picture (Visible on all "pages"/sections) */
+    /* Floating Profile Badge */
     .global-profile-badge {
       position: fixed;
-      bottom: 100px;
+      bottom: 30px;
       right: 30px;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
       border: 3px solid var(--accent-yellow);
       background-image: url('1.jpg');
       background-size: cover;
       background-position: center;
       z-index: 9998;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
     }
-    .global-profile-badge:hover { transform: scale(1.2); }
+    .global-profile-badge:hover { transform: scale(1.15); }
 
     /* Navigation */
-    nav { background: var(--nav-bg); box-shadow: none; height: 70px; line-height: 70px; position: fixed; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    nav ul li a { color: var(--text-main); }
+    nav { background: var(--nav-bg); height: 70px; line-height: 70px; position: fixed; z-index: 1000; box-shadow: none; border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
+    nav ul li a { color: var(--text-main); font-weight: 600; }
     .brand-logo { font-weight: 900; }
 
-    /* Hero Section */
-    #intro { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 70px;}
+    /* Sections */
+    section { padding: 100px 0; }
+    #intro { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
     .hero-profile-img { width: 350px; height: 350px; border-radius: 30px; border: 4px solid var(--accent-yellow); object-fit: cover; box-shadow: 20px 20px 0px rgba(255,177,0,0.1); }
 
+    /* Typing Animation */
     #typing { color: var(--accent-yellow); font-weight: 900; border-right: 3px solid var(--accent-yellow); animation: caret 0.7s infinite; }
     @keyframes caret { 50% { border-color: transparent; } }
 
-    .tech-badge { background: rgba(0, 191, 165, 0.1); border: 1px solid var(--teal-accent); color: var(--teal-accent); padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 5px; font-size: 0.9rem; }
+    /* Real Looks Tech Badges */
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 15px;
+      border-radius: 25px;
+      margin: 5px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff !important;
+      border: none;
+      transition: transform 0.2s ease;
+    }
+    .tech-badge i { margin-right: 8px; }
+    .badge-python { background-color: #3776AB; }
+    .badge-django { background-color: #092E20; }
+    .badge-flutter { background-color: #02569B; }
+    .badge-ai { background-color: #FF6F00; }
+    .badge-postgres { background-color: #336791; }
+    .badge-docker { background-color: #2496ED; }
+    .badge-react { background-color: #61DAFB; }
+    .badge-nodejs { background-color: #339933; }
+    .badge-javascript { background-color: #F7DF1E; }
+    .badge-typescript { background-color: #3178C6; }
+    .badge-vue { background-color: #4FC08D; }
+    .badge-angular { background-color: #DD0031; }
+    .badge-express { background-color: #000000; }
+    .badge-mongodb { background-color: #47A248; }
+    .badge-git { background-color: #F05032; }
+    .badge-aws { background-color: #FF9900; }
+    .badge-tailwind { background-color: #06B6D4; }
+    .badge-bootstrap { background-color: #7952B3; }
+    .tech-badge { cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+    .tech-badge:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.3); filter: brightness(1.2); }
 
+    /* Project Cards */
     .project-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; transition: 0.4s; height: 100%; border: 1px solid rgba(255,255,255,0.05); }
     .project-card:hover { transform: translateY(-10px); border-color: var(--accent-yellow); }
     .project-card img { width: 100%; height: 200px; object-fit: cover; }
     .project-content { padding: 20px; }
 
     /* Resume Section */
-    #resume { background: #f4f4f4; color: #333; padding: 80px 0; }
-    .resume-paper { background: #fff; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 10px solid #0f1d14; }
-    .resume-section-title { border-bottom: 2px solid var(--accent-yellow); margin-bottom: 15px; font-weight: 700; color: #1e3a29; display: inline-block; width: 100%; }
+    #resume { background: #f4f4f4; color: #333; }
+    .resume-paper { background: #fff; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 10px solid #0f1d14; border-radius: 4px; }
+    .resume-section-title { border-bottom: 2px solid var(--accent-yellow); margin-bottom: 15px; font-weight: 700; color: #1e3a29; display: inline-block; width: 100%; text-transform: uppercase; }
+    .resume-item { margin-bottom: 25px; }
+
+    /* Contact Section High Visibility */
+    .contact-profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent-yellow); object-fit: cover; margin-bottom: 20px; }
+    .social-icon-box { display: flex; gap: 15px; margin-top: 25px; }
+    .social-btn { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white !important; transition: 0.3s; }
+    .btn-whatsapp { background-color: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+    .btn-linkedin { background-color: #0077B5; box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3); }
+    .btn-github { background-color: #333; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+    .social-btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
 
     #theme-toggle { cursor: pointer; background: none; border: none; color: var(--text-main); font-size: 1.2rem; margin-top: 18px; margin-left: 15px; }
 
-    @media only screen and (max-width: 992px) { #intro { text-align: center; } .hero-profile-img { width: 250px; height: 250px; margin-top: 30px; } .global-profile-badge { width: 45px; height: 45px; bottom: 90px; right: 20px; } }
+    @media only screen and (max-width: 992px) { 
+        #intro { text-align: center; } 
+        .hero-profile-img { width: 250px; height: 250px; margin-top: 30px; } 
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--nav-bg);
+        z-index: 9999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    @media only screen and (max-width: 992px) {
+        .mobile-nav {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--nav-bg);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-content {
+            padding: 100px 30px;
+        }
+        
+        .mobile-nav-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-nav-content li {
+            margin: 20px 0;
+        }
+        
+        .mobile-nav-content a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    .sidebar-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 177, 0, 0.3);
+      border: 2px solid var(--accent-yellow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .sidebar-dot:hover {
+      background: var(--accent-yellow);
+      transform: scale(1.3);
+    }
+    
+    .sidebar-dot.active {
+      background: var(--accent-yellow);
+      transform: scale(1.2);
+    }
+    
+    .sidebar-tooltip {
+      position: absolute;
+      left: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--nav-bg);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .sidebar-dot:hover .sidebar-tooltip {
+      opacity: 1;
+    }
+    
+    @media only screen and (max-width: 992px) {
+      .sidebar {
+        display: none;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="global-profile-badge hide-on-small-only"></div>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="sidebar-dot active" data-section="intro" onclick="scrollToSection('intro')">
+      <div class="sidebar-tooltip">Home</div>
+    </div>
+    <div class="sidebar-dot" data-section="about" onclick="scrollToSection('about')">
+      <div class="sidebar-tooltip">About</div>
+    </div>
+    <div class="sidebar-dot" data-section="projects" onclick="scrollToSection('projects')">
+      <div class="sidebar-tooltip">Projects</div>
+    </div>
+    <div class="sidebar-dot" data-section="experience" onclick="scrollToSection('experience')">
+      <div class="sidebar-tooltip">Experience</div>
+    </div>
+    <div class="sidebar-dot" data-section="resume" onclick="scrollToSection('resume')">
+      <div class="sidebar-tooltip">Resume</div>
+    </div>
+    <div class="sidebar-dot" data-section="contact" onclick="scrollToSection('contact')">
+      <div class="sidebar-tooltip">Contact</div>
+    </div>
+  </div>
+
+  <a href="#about"><div class="global-profile-badge"></div></a>
 
   <nav>
     <div class="container">
-      <a href="#" class="brand-logo teal-text">KUBANJA</a>
+      <a href="#" class="brand-logo teal-text">K.E.E</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#resume">Resume</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><button id="theme-toggle" class="btn-floating btn-small grey darken-3"><i id="theme-icon" class="fa fa-moon-o"></i></button></li>
-        <li><a href="https://github.com/KubanjaElijahEldred" target="_blank" class="btn-floating btn-small black" style="margin-top: 18px; margin-left: 15px;"><i class="fa fa-github"></i></a></li>
       </ul>
+      <button class="hamburger hide-on-large-only" id="mobile-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="mobile-nav-close" id="mobile-nav-close">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="mobile-nav-content">
+      <ul>
+        <li><a href="#about" onclick="closeMobileNav()">About</a></li>
+        <li><a href="#projects" onclick="closeMobileNav()">Work</a></li>
+        <li><a href="#experience" onclick="closeMobileNav()">Experience</a></li>
+        <li><a href="#resume" onclick="closeMobileNav()">Resume</a></li>
+        <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+        <li><button id="theme-toggle-mobile" class="btn-floating btn-small grey darken-3"><i id="theme-icon-mobile" class="fa fa-moon-o"></i></button></li>
+      </ul>
+    </div>
+  </div>
 
   <section id="intro">
     <div class="container">
@@ -124,12 +355,10 @@
         <div class="col s12 m7" data-aos="fade-right">
           <h5 style="color: var(--teal-accent); font-weight: 700;">WELCOME TO MY PORTFOLIO</h5>
           <h1 style="font-weight: 900; margin: 10px 0;">I am <span id="typing"></span></h1>
-          <p class="flow-text" style="opacity: 0.9; line-height: 1.6;">
-            Bridging the gap between complex backend architecture and innovative AI solutions. 
-            Currently a Software Engineering Student at <b>Bugema University</b>.
-          </p>
+          <p class="flow-text">Bridging the gap between complex backend architecture and innovative AI solutions. Currently a Software Engineering Student at <b>Bugema University</b>.</p>
           <div style="margin-top: 40px;">
             <a href="#projects" class="btn-large" style="background:var(--accent-yellow); color:#000; font-weight:900; border-radius: 8px;">EXPLORE WORK</a>
+            <a href="#contact" class="btn-large transparent" style="border: 2px solid var(--text-main); margin-left: 15px; border-radius: 8px; color: var(--text-main);">HIRE ME</a>
           </div>
         </div>
         <div class="col s12 m5 center" data-aos="zoom-in">
@@ -139,36 +368,221 @@
     </div>
   </section>
 
-  <section id="about" style="padding: 100px 0;">
+  <section id="about">
     <div class="container">
       <div class="row">
         <div class="col s12 m6" data-aos="fade-right">
           <h3 class="teal-text" style="font-weight:900;">About Me</h3>
-          <p class="flow-text">
-            I am a dedicated Software Developer with a deep-rooted passion for backend logic, automation, and the evolving world of Artificial Intelligence.
-          </p>
-          <div style="margin-top:20px;">
-            <span class="tech-badge">Python</span> <span class="tech-badge">Django</span> <span class="tech-badge">AI/ML</span> <span class="tech-badge">Flutter</span>
+          <p class="flow-text">Dedicated Software Developer with a deep-rooted passion for frontend UI, backend logic, mobile app development, system development, and AI chatbot development that are used in offline version. I specialize in building scalable, secure, and high-performance systems and applications.</p>
+          
+          <h4 style="font-weight: 700; margin-top: 30px; margin-bottom: 20px; color: var(--accent-yellow);">Core Technologies</h4>
+          <div style="margin-top: 20px;">
+            <a href="https://www.python.org" target="_blank" class="tech-badge badge-python" title="Python"><i class="fa fa-code"></i> Python</a>
+            <a href="https://www.djangoproject.com" target="_blank" class="tech-badge badge-django" title="Django"><i class="fa fa-leaf"></i> Django</a>
+            <a href="https://flutter.dev" target="_blank" class="tech-badge badge-flutter" title="Flutter"><i class="fa fa-mobile"></i> Flutter</a>
+            <a href="https://reactjs.org" target="_blank" class="tech-badge badge-react" title="React"><i class="fa fa-react"></i> React</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="tech-badge badge-javascript" title="JavaScript"><i class="fa fa-code"></i> JavaScript</a>
+            <a href="https://nodejs.org" target="_blank" class="tech-badge badge-nodejs" title="Node.js"><i class="fa fa-server"></i> Node.js</a>
+            <a href="https://www.typescriptlang.org" target="_blank" class="tech-badge badge-typescript" title="TypeScript"><i class="fa fa-code"></i> TypeScript</a>
+          </div>
+          
+          <h4 style="font-weight: 700; margin-top: 30px; margin-bottom: 20px; color: var(--accent-yellow);">Frontend Frameworks</h4>
+          <div style="margin-top: 20px;">
+            <a href="https://vuejs.org" target="_blank" class="tech-badge badge-vue" title="Vue.js"><i class="fa fa-code"></i> Vue.js</a>
+            <a href="https://angular.io" target="_blank" class="tech-badge badge-angular" title="Angular"><i class="fa fa-code"></i> Angular</a>
+            <a href="https://tailwindcss.com" target="_blank" class="tech-badge badge-tailwind" title="Tailwind CSS"><i class="fa fa-css3"></i> Tailwind</a>
+            <a href="https://getbootstrap.com" target="_blank" class="tech-badge badge-bootstrap" title="Bootstrap"><i class="fa fa-css3"></i> Bootstrap</a>
+          </div>
+          
+          <h4 style="font-weight: 700; margin-top: 30px; margin-bottom: 20px; color: var(--accent-yellow);">Backend & Database</h4>
+          <div style="margin-top: 20px;">
+            <a href="https://expressjs.com" target="_blank" class="tech-badge badge-express" title="Express.js"><i class="fa fa-server"></i> Express</a>
+            <a href="www.postgresql.org" target="_blank" class="tech-badge badge-postgres" title="PostgreSQL"><i class="fa fa-database"></i> PostgreSQL</a>
+            <a href="https://www.mongodb.com" target="_blank" class="tech-badge badge-mongodb" title="MongoDB"><i class="fa fa-database"></i> MongoDB</a>
+          </div>
+          
+          <h4 style="font-weight: 700; margin-top: 30px; margin-bottom: 20px; color: var(--accent-yellow);">Tools & Cloud</h4>
+          <div style="margin-top: 20px;">
+            <a href="https://www.docker.com" target="_blank" class="tech-badge badge-docker" title="Docker"><i class="fa fa-ship"></i> Docker</a>
+            <a href="https://git-scm.com" target="_blank" class="tech-badge badge-git" title="Git"><i class="fa fa-git"></i> Git</a>
+            <a href="https://aws.amazon.com" target="_blank" class="tech-badge badge-aws" title="AWS"><i class="fa fa-cloud"></i> AWS</a>
+            <a href="#" class="tech-badge badge-ai" title="AI/ML"><i class="fa fa-android"></i> AI/ML</a>
+          </div>
+        </div>
+        <div class="col s12 m6 center" data-aos="fade-left">
+           <img src="https://github-readme-stats.vercel.app/api?username=KubanjaElijahEldred&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f1d14" alt="GitHub Stats" style="max-width: 100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h3 class="center" style="font-weight: 900; margin-bottom: 50px;">Engineering Projects</h3>
+      <div class="row">
+        <div class="col s12 m4" data-aos="fade-up">
+          <div class="project-card">
+            <img src="/assets/img/image.png?v=2" alt="Cinema App">
+            <div class="project-content">
+              <h6><b>Cinema Stream Hub</b></h6>
+              <p>Flutter application with real-time API integration for media browsing.</p>
+              <a href="https://github.com/KubanjaElijahEldred/Movie-App" target="_blank" class="teal-text">View Source</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <img src="/assets/img/AI.jpg" alt="AI Chatbot">
+            <div class="project-content">
+              <h6><b>AI Student Companion</b></h6>
+              <p>NLP chatbot designed to assist with university scheduling and queries that can be used in offline version .</p>
+              <a href="https://github.com/KubanjaElijahEldred/AI-Student-Companion" target="_blank" class="teal-text">View Source</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <img src="/assets/img/student.jpg.png" alt="Registration">
+            <div class="project-content">
+              <h6><b>Student Management System</b></h6>
+              <p>A full-cycle platform for handling high-volume student management ie report card, exam passes, Registration crads, management of the staff and non staff aided with an AI assistant inform of achatbot.</p>
+              <a href="https://github.com/KubanjaElijahEldred/student-management-system" target="_blank" class="teal-text">View Source</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col s12 m4" data-aos="fade-up">
+          <div class="project-card">
+            <img src="/assets/img/doc.jpg" alt="Hospital ERP">
+            <div class="project-content">
+              <h6><b>Hospital Management System</b></h6>
+              <p>Enterprise-grade healthcare platform focused on record integrity, staff recruitment and patient related care and treatment.</p>
+              <a href="https://github.com/KubanjaElijahEldred/hospital-management-system" target="_blank" class="teal-text">View Source</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <img src="/assets/img/smart.jpg" alt="Biometrics">
+            <div class="project-content">
+              <h6><b>Smart Attendance</b></h6>
+              <p>Facial recognition tracking system using OpenCV and deep learning.</p>
+              <a href="https://github.com/KubanjaElijahEldred/smart-attendance" target="_blank" class="teal-text">View Source</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <img src="/assets/img/farm.jpg" alt="Agri-Tech">
+            <div class="project-content">
+              <h6><b>Farm Management System and Agri-Tech Data Hub </b></h6>
+              <p>Platform for tracking crop health and managing resource logistics.</p>
+              <a href="https://github.com/KubanjaElijahEldred/farmer-management-system" target="_blank" class="teal-text">View Source</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" style="padding: 100px 0;">
+  <div class="center" style="margin-top: 50px; margin-bottom: 30px;">
+    <a href="https://github.com/KubanjaElijahEldred" target="_blank" class="btn-large" style="background:var(--accent-yellow); color:#000; font-weight:900; border-radius: 8px;">
+      <i class="fa fa-github left"></i>VIEW OTHER PROJECTS
+    </a>
+  </div>
+
+  <section id="experience">
     <div class="container">
-      <h3 class="center" style="font-weight: 900; margin-bottom: 50px;">Featured Engineering Projects</h3>
+      <h3 class="center" style="font-weight: 900; margin-bottom: 50px;">Professional Experience</h3>
       <div class="row">
-        <div class="col s12 m4" data-aos="fade-up">
-            <div class="project-card">
-                <img src="/assets/img/image.png?v=2" alt="Project">
-                <div class="project-content">
-                  <h6><b>Cinema Stream Hub</b></h6>
-                  <p>Advanced Flutter application featuring real-time API integration.</p>
-                </div>
+        <div class="col s12 m6" data-aos="fade-right">
+          <div class="project-card">
+            <div class="project-content">
+              <h6><b>Freelance Software Developer</b></h6>
+              <p style="color: var(--accent-yellow); font-weight: 600;">2022 - Present | 19 Months (Cumulative)</p>
+              <ul style="margin-top: 15px;">
+                <li>Built 5+ full-stack web applications using React Native and Django REST Frameworks</li>
+                <li>Automated backend workflows reducing manual data entry by 40%</li>
+                <li>Integrated AI-driven chatbots to streamline customer support operations</li>
+                <li>Developed mobile applications with offline capabilities for rural areas</li>
+                <li>Implemented secure payment systems and user authentication</li>
+              </ul>
+              <div style="margin-top: 20px;">
+                <span class="tech-badge badge-python">Python</span>
+                <span class="tech-badge badge-django">Django</span>
+                <span class="tech-badge badge-react">React</span>
+                <span class="tech-badge badge-flutter">Flutter</span>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="col s12 m6" data-aos="fade-left">
+          <div class="project-card">
+            <div class="project-content">
+              <h6><b>AI & Machine Learning Projects</b></h6>
+              <p style="color: var(--accent-yellow); font-weight: 600;">2023 - Present | Research & Development</p>
+              <ul style="margin-top: 15px;">
+                <li>Developed NLP-based chatbot for university student services</li>
+                <li>Implemented facial recognition system for attendance tracking (95% accuracy)</li>
+                <li>Created predictive models for agricultural yield optimization</li>
+                <li>Built offline-capable AI assistants for educational institutions</li>
+                <li>Researched and implemented computer vision solutions for healthcare</li>
+              </ul>
+              <div style="margin-top: 20px;">
+                <span class="tech-badge badge-ai">TensorFlow</span>
+                <span class="tech-badge badge-ai">OpenCV</span>
+                <span class="tech-badge badge-python">NumPy</span>
+                <span class="tech-badge badge-python">Scikit-learn</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <div class="col s12 m6" data-aos="fade-up">
+          <div class="project-card">
+            <div class="project-content">
+              <h6><b>System Architecture & DevOps</b></h6>
+              <p style="color: var(--accent-yellow); font-weight: 600;">2023 - Present | Infrastructure Development</p>
+              <ul style="margin-top: 15px;">
+                <li>Designed scalable microservices architecture for enterprise applications</li>
+                <li>Implemented CI/CD pipelines using Docker and GitHub Actions</li>
+                <li>Set up cloud infrastructure on AWS for high-availability systems</li>
+                <li>Optimized database performance and implemented caching strategies</li>
+                <li>Developed monitoring and logging systems for production environments</li>
+              </ul>
+              <div style="margin-top: 20px;">
+                <span class="tech-badge badge-docker">Docker</span>
+                <span class="tech-badge badge-aws">AWS</span>
+                <span class="tech-badge badge-postgres">PostgreSQL</span>
+                <span class="tech-badge badge-git">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <div class="project-content">
+              <h6><b>Technical Consulting & Training</b></h6>
+              <p style="color: var(--accent-yellow); font-weight: 600;">2022 - Present | Client Services</p>
+              <ul style="margin-top: 15px;">
+                <li>Provided technical consultation for startups and small businesses</li>
+                <li>Conducted training sessions on modern web development practices</li>
+                <li>Assisted with digital transformation projects for local businesses</li>
+                <li>Mentored junior developers in best coding practices</li>
+                <li>Developed technical documentation and user guides</li>
+              </ul>
+              <div style="margin-top: 20px;">
+                <span class="tech-badge badge-javascript">JavaScript</span>
+                <span class="tech-badge badge-nodejs">Node.js</span>
+                <span class="tech-badge badge-mongodb">MongoDB</span>
+                <span class="tech-badge badge-express">Express</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -177,14 +591,85 @@
       <div class="resume-paper" data-aos="fade-up">
         <div class="resume-header center">
           <h2>Kubanja Elijah Eldred</h2>
-          <p>Full-Stack Software Developer | Bugema University</p>
+          <p style="font-size: 1.2rem;"><b>Full-Stack Developer & AI Enthusiast</b></p>
+          <p>📍 Kampala, Uganda | 📞 +256 700 290 157 | 📧 kubanjaelijah2037@gmail.com</p>
         </div>
+        
+        <div class="row" style="margin-top: 40px;">
+          <div class="col s12">
+            <h5 class="resume-section-title">Education</h5>
+            <div class="resume-item">
+              <p><b>Bachelor of Science in Software Engineering</b> | Year 2<br>
+              Bugema University | 2024 – Present<br>
+              <i>Pursuing degree with focus on: Data Structures, Mobile App Development, AI, Database Management Systems and Software Architecture.</i></p>
+            </div>
+
+            <h5 class="resume-section-title">Technical Expertise</h5>
+            <div class="resume-item">
+              <p><b>Languages:</b> Python (Django, Flask), Java, C,JavaScript, Dart (Flutter), Node.js.<br>
+              <b>Data & AI:</b> TensorFlow, OpenCV, NumPy, Machine Learning Modeling.<br>
+              <b>Tools:</b> PostgreSQL, Docker, Git, RESTful APIs, AWS, MongoDB.</p>
+            </div>
+
+            <h5 class="resume-section-title">Professional Experience</h5>
+            <div class="resume-item">
+              <p><b>Freelance Software Developer</b> | 19 Months (Cumulative)<br>
+              • Built 5+ full-stack web applications using ReactNative And Django rest Frameworks.<br>
+              • Automated backend workflows reducing manual data entry by 40%.<br>
+              • Integrated AI-driven chatbots to streamline local customer support.</p>
+            </div>
+
+            <h5 class="resume-section-title">Project Highlights</h5>
+            <div class="resume-item">
+              <p><b>Smart Attendance:</b> Achieved 95% accuracy in facial recognition using OpenCV.<br>
+              <b>AI Companion:</b> Leveraged NLP for context-aware academic reminders which operates in offline version.</p>
+            </div>
+          </div>
         </div>
+        <div class="center" style="margin-top: 20px;">
+            <button onclick="window.print()" class="btn black" style="border-radius: 8px;"><i class="fa fa-print left"></i> Download Resume (PDF)</button>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer class="center" style="padding: 60px; border-top: 1px solid #222;">
-    <p>© 2025 Kubanja Elijah Eldred | Built with Passion & Code</p>
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6" data-aos="fade-right">
+          <img src="1.jpg" alt="Kubanja Contact" class="contact-profile-img">
+          <h3 style="font-weight: 900; color:var(--accent-yellow);">Let's Build Together.</h3>
+          <p class="flow-text">Available for internships, freelance projects,WEbsite develoment mobile app development, system develoment, and AI research.</p>
+          
+          <div class="social-icon-box">
+            <a href="https://wa.me/256700290157" class="social-btn btn-whatsapp" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/elijah-kubanja-800b53302" class="social-btn btn-linkedin" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="https://github.com/KubanjaElijahEldred" class="social-btn btn-github" title="GitHub"><i class="fa fa-github"></i></a>
+          </div>
+          
+          <div style="margin-top: 30px;">
+            <a id="download-vcard" class="btn-large" style="border: 2px solid var(--teal-accent); background:transparent; color: var(--teal-accent); font-weight: 700;">
+                <i class="fa fa-address-card left"></i> SAVE CONTACT
+            </a>
+          </div>
+        </div>
+        
+        <div class="col s12 m6" data-aos="fade-left">
+          <div style="background: var(--card-bg); padding: 30px; border-radius: 15px;">
+            <form action="https://formspree.io/f/mqkraovk" method="POST">
+              <input type="text" name="name" placeholder="Your Name" required style="color: white; border-bottom: 1px solid #444;">
+              <input type="email" name="email" placeholder="Your Email" required style="color: white; border-bottom: 1px solid #444;">
+              <textarea name="message" placeholder="Project Details" style="height: 120px; color: white; border: 1px solid #444; padding: 10px; margin-top: 15px;" required></textarea>
+              <button type="submit" class="btn-large" style="background:var(--accent-yellow); color:#000; width:100%; font-weight: 900; margin-top: 20px;">SEND INQUIRY</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="center" style="padding: 60px; border-top: 1px solid rgba(128,128,128,0.2);">
+    <p> 2025 Kubanja Elijah Eldred | Built with Passion & Code</p>
   </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -213,8 +698,8 @@
       }
     });
 
-    // Typing Animation
-    const words = ["Kubanja Eldred", "a Software Developer", "an AI Specialist"];
+    // Typing Logic
+    const words = ["Kubanja Elijah Eldred", "a Software Engineer", "a Software Developer", "a Mobile App Developer", "an AI Specialist", "a Full-Stack Developer", "a System Architect"];
     let i = 0, j = 0, current = "", deleting = false;
     function type() {
       current = words[i];
@@ -228,6 +713,60 @@
       setTimeout(type, deleting ? 50 : 150);
     }
     type();
+
+    // Mobile Navigation
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    
+    function closeMobileNav() {
+      mobileNav.classList.remove('active');
+    }
+    
+    if(mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileNav.classList.add('active');
+      });
+    }
+    
+    if(mobileNavClose) {
+      mobileNavClose.addEventListener('click', closeMobileNav);
+    }
+    
+    // Mobile theme toggle
+    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+    const themeIconMobile = document.getElementById('theme-icon-mobile');
+    
+    if(themeBtnMobile) {
+      themeBtnMobile.addEventListener('click', () => {
+        let current = document.documentElement.getAttribute('data-theme');
+        if(current === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          if(themeIcon) themeIcon.className = 'fa fa-sun-o';
+          if(themeIconMobile) themeIconMobile.className = 'fa fa-sun-o';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          if(themeIcon) themeIcon.className = 'fa fa-moon-o';
+          if(themeIconMobile) themeIconMobile.className = 'fa fa-moon-o';
+        }
+      });
+      
+      // Sync mobile theme icon
+      if(savedTheme === 'light') {
+        themeIconMobile.className = 'fa fa-sun-o';
+      }
+    }
+
+    // vCard Download
+    document.getElementById('download-vcard').addEventListener('click', function() {
+      const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Kubanja Elijah Eldred\nORG:Software Developer\nTEL:+256700290157\nEMAIL:kubanjaelijah2037@gmail.com\nEND:VCARD";
+      const blob = new Blob([vcard], { type: "text/vcard" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "Kubanja_Elijah.vcf"; a.click();
+    });
   </script>
 </body>
 </html>
